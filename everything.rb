@@ -213,3 +213,19 @@ f
 # provided #call.
 
 
+# Are there differences in methods?
+
+lambda {}.methods - proc {}.methods
+# => []
+
+
+methodd(:foo).methods - proc {}.methods
+# => [:receiver, :name, :owner, :unbind]
+
+proc {}.methods - method(:foo).methods
+# => [:yield, :lambda?, :binding, :curry]
+
+
+# Difference between lambda and proc according to a Stackoverflow article
+# Just like methods, lambdas have strict argument checking, whereas non-lambda
+# Procs have loose argument checking, just like blocks.
